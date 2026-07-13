@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --aether-deep-teal: #0097A7;
+  --aether-electric-teal: #00BCD4;
+  --aether-bright-cyan: #00E5FF;
+  --aether-sky-cyan: #4DD0E1;
+  --sky-white: #FAFAF8;
+  --deep-ink: #1a3a3a;
+  --success: #10B981;
+  --alert: #EF4444;
+  --neutral: #6B7280;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--sky-white);
+  color: var(--deep-ink);
+  line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(32px, 8vw, 56px);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(24px, 5vw, 40px);
+}
+
+h3 {
+  font-size: clamp(20px, 3vw, 32px);
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Links */
+a {
+  color: var(--aether-electric-teal);
+  text-decoration: none;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--aether-bright-cyan);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary {
+  background-color: var(--aether-electric-teal);
+  color: var(--sky-white);
+  border: 2px solid transparent;
+  border-top-color: transparent;
+}
+
+.btn-primary:hover {
+  background-color: #0088a3;
+  border-top-color: var(--aether-bright-cyan);
+  border-top-width: 2px;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--aether-electric-teal);
+  border: 1px solid var(--aether-electric-teal);
+}
+
+.btn-secondary:hover {
+  border-width: 2px;
+  border-top-color: var(--aether-bright-cyan);
+  background-color: rgba(0, 188, 212, 0.05);
+}
+
+.btn-tertiary {
+  background-color: transparent;
+  color: var(--aether-indigo);
+  padding: 0;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.btn-tertiary:hover {
+  text-decoration: underline;
+  color: var(--aether-gold);
+}
+
+/* Cards */
+.card {
+  background-color: var(--sky-white);
+  border: 1px solid rgba(0, 188, 212, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  border-top: 2px solid var(--aether-bright-cyan);
+  box-shadow: 0 1px 3px rgba(0, 188, 212, 0.1);
+}
+
+/* Form Elements */
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid rgba(0, 188, 212, 0.1);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  background-color: var(--sky-white);
+  color: var(--deep-ink);
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--aether-electric-teal);
+  border-width: 2px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--neutral);
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--deep-ink);
+  text-transform: capitalize;
+}
+
+/* Utility Classes */
+.text-gradient {
+  background: linear-gradient(135deg, var(--aether-indigo), var(--aether-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-spacing {
+  margin: 48px 0;
+}
+
+.container-aether {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  .section-spacing {
+    margin: 32px 0;
+  }
+
+  .container-aether {
+    padding: 0 16px;
+  }
+}
