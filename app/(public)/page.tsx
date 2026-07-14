@@ -61,14 +61,12 @@ export default function Home() {
   ];
 
   return (
-    <>
-      {/* Animated Hero Section with Scroll Scrubber */}
-      <ScrollScrubberHero
-        frameBasePath="/frames/aether/"
-        frameCount={60}
-        frameExtension="webp"
-        containerHeight="400vh"
-      />
+ <ScrollScrubberHero
+  frameBasePath="/frames/aether/"
+  frameCount={60}
+  frameExtension="webp"
+  containerHeight="400vh"
+/>
 
       {/* Benefits Grid */}
       <section className="py-24 section-spacing">
