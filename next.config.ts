@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+  images: {
+    qualities: [75, 85],
+  },
 };
 
 export default nextConfig;
