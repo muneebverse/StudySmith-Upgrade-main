@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Zap, Users, TrendingUp } from 'lucide-react';
 import Faq from '@/components/Faq';
+import ScrollScrubberHero from '@/components/ScrollScrubberHero';
 
 export default function Home() {
   const benefits = [
@@ -61,42 +62,13 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-aether-indigo text-aether-sky-white py-24 lg:py-32">
-        <div className="container-aether">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight">
-                Elevate to Clarity
-              </h1>
-              <p className="text-lg text-aether-sky-white text-opacity-90 mb-8 max-w-lg leading-relaxed">
-                Transform your professional application from invisible to unmissable. Your resume is your first impression. Let's make it count.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/services" className="btn btn-primary bg-aether-gold text-aether-deep-ink hover:bg-white">
-                  Get Started
-                  <ArrowRight size={18} className="ml-2" />
-                </Link>
-                <Link href="/about" className="btn btn-secondary border-aether-sky-white text-aether-sky-white hover:text-aether-deep-ink">
-                  Learn More
-                </Link>
-              </div>
-            </div>
-
-            {/* Hero Visual */}
-            <div className="hidden lg:block">
-              <div className="bg-gradient-to-br from-aether-gold to-aether-indigo rounded-expansive p-8 aspect-square flex items-center justify-center">
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-24 h-24 bg-aether-sky-white rounded-full mb-6">
-                    <span className="text-aether-indigo font-display font-bold text-4xl">A</span>
-                  </div>
-                  <p className="text-aether-sky-white text-lg font-display font-bold">AETHER</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Animated Hero Section with Scroll Scrubber */}
+      <ScrollScrubberHero
+        frameBasePath="/frames/aether/"
+        frameCount={60}
+        frameExtension="webp"
+        containerHeight="400vh"
+      />
 
       {/* Benefits Grid */}
       <section className="py-24 section-spacing">
