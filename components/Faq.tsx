@@ -19,27 +19,32 @@ export default function Faq({ faqs }: { faqs: FaqItem[] }) {
   return (
     <div className="space-y-4">
       {faqs.map((faq) => (
-        <div key={faq.id} className="card">
+        <div 
+          key={faq.id} 
+          className="card bg-sky-white border-aether-electric-teal border-opacity-20 hover:border-opacity-40"
+        >
           <button
             onClick={() => toggle(faq.id)}
             className="w-full flex justify-between items-center gap-4 text-left"
             aria-expanded={openId === faq.id}
           >
-            <h3 className="font-display font-bold text-lg text-aether-deep-ink">
+            <h3 className="font-display font-bold text-lg text-aether-deep-teal">
               {faq.question}
             </h3>
             <ChevronDown
               size={24}
-              className={`text-aether-indigo transition-transform flex-shrink-0 ${
-                openId === faq.id ? 'rotate-180' : ''
+              className={`text-aether-electric-teal transition-transform flex-shrink-0 ${
+                openId === faq.id ? 'rotate-180 text-aether-bright-cyan' : ''
               }`}
             />
           </button>
 
           {openId === faq.id && (
-            <p className="mt-4 text-aether-deep-ink text-opacity-70 leading-relaxed">
-              {faq.answer}
-            </p>
+            <div className="mt-4 pt-4 border-t border-aether-electric-teal border-opacity-10 animate-fade-in-down">
+              <p className="text-deep-ink text-opacity-70 leading-relaxed">
+                {faq.answer}
+              </p>
+            </div>
           )}
         </div>
       ))}
