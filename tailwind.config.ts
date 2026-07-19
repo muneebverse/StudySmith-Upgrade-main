@@ -54,7 +54,7 @@ const config: Config = {
       },
       boxShadow: {
         subtle: '0 1px 3px rgba(15, 15, 18, 0.1)',
-        card: '0 1px 3px rgba(79, 70, 229, 0.1)',
+        card: '0 1px 3px rgba(0, 151, 167, 0.1)',
       },
       transitionDuration: {
         fast: '200ms',
