@@ -65,7 +65,7 @@ export default async function ServicesPage() {
                     <td className="px-4 py-3">
                       <span
                         className={`text-xs font-medium px-2 py-1 rounded ${
-                          s.status === 'active'
+                          s.status?.toLowerCase() === 'active'
                             ? 'bg-green-100 text-green-800'
                             : 'bg-gray-100 text-gray-800'
                         }`}
