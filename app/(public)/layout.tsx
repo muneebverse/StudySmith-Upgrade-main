@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { CurrencyProvider } from '@/lib/CurrencyContext';
+import { RequestModalProvider } from '@/contexts/RequestModalContext';
 import '../globals.css';
 
 export const metadata: Metadata = {
@@ -31,13 +33,17 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <meta name="theme-color" content="#4F46E5" />
+        <meta name="theme-color" content="#0097A7" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="bg-aether-sky-white text-aether-deep-ink">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <CurrencyProvider>
+          <RequestModalProvider>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </RequestModalProvider>
+        </CurrencyProvider>
       </body>
     </html>
   );
