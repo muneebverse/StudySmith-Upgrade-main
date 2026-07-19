@@ -1,14 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { Globe, FileText, Presentation, Linkedin } from 'lucide-react';
+import { Globe, FileText, Presentation } from 'lucide-react';
+import { LinkedinIcon } from '@/components/icons/BrandIcons';
 import { useRequestModal } from '@/contexts/RequestModalContext';
 
 const SERVICE_CATEGORIES = [
   { icon: Globe, title: 'Portfolio & Websites', description: 'Custom Next.js portfolio sites that convert visitors into opportunities.', startingAt: '5,999 PKR', anchor: '/pricing#portfolio', category: 'Portfolio & Website' },
   { icon: FileText, title: 'CV & Career Documents', description: 'ATS-optimized resumes that get past screening systems and in front of hiring managers.', startingAt: '1,999 PKR', anchor: '/pricing#cv', category: 'CV & Career Documents' },
   { icon: Presentation, title: 'Presentations', description: 'Professional slide decks with strategic narrative flow and modern design.', startingAt: '999 PKR', anchor: '/pricing#presentations', category: 'Presentation / Slide Deck' },
-  { icon: Linkedin, title: 'LinkedIn Optimization', description: 'Profile rewrites that boost discoverability and recruiter visibility.', startingAt: '1,499 PKR', anchor: '/pricing#linkedin', category: 'LinkedIn Optimization' },
+  { icon: LinkedinIcon, title: 'LinkedIn Optimization', description: 'Profile rewrites that boost discoverability and recruiter visibility.', startingAt: '1,499 PKR', anchor: '/pricing#linkedin', category: 'LinkedIn Optimization' },
 ];
 
 const WORKFLOW = [
