@@ -2,7 +2,7 @@
 
 // Using relative paths to resolve path alias compilation errors
 import { createClient } from '../lib/supabase-server';
-import * as supabaseAdminLib from '../lib/supabase-admin';
+import { createAdminClient } from '../lib/supabase-admin';
 import * as orderIdLib from '../lib/order-id';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
@@ -23,17 +23,17 @@ const generateId = typeof orderIdAny.generateOrderId === 'function'
       return `SS-${result}`;
     };
 
-// Bypassing TypeScript compilation checks on supabase-admin.ts exports
-const adminLibAny = supabaseAdminLib as any;
-
-// Dynamically resolve common admin export names (supabaseAdmin, supabase, createAdminClient, etc.)
-let supabaseAdmin = adminLibAny.supabaseAdmin || adminLibAny.supabase;
-
-if (!supabaseAdmin) {
-  if (typeof adminLibAny.createAdminClient === 'function') {
-    supabaseAdmin = adminLibAny.createAdminClient();
-  } else if (typeof adminLibAny.createClient === 'function') {
-    supabaseAdmin = adminLibAny.createClient();
+// Create the admin client lazily — only when a server action actually runs.
+// IMPORTANT: this must never run at module load time. Next.js evaluates this
+// file's top level during `next build`'s "Collecting page data" step for every
+// route that imports from here, before any request context exists — if a
+// Supabase client were constructed up there, a missing/misconfigured env var
+// crashes the entire build instead of just the one action that needed it.
+async function getAdminClient() {
+  try {
+    return createAdminClient();
+  } catch {
+    return await createClient();
   }
 }
 
@@ -138,7 +138,7 @@ export async function trackOrderLookup(orderId: string) {
 // 3. Admin: Update status parameters on lead
 export async function updateLeadStatus(leadId: string, status: 'received' | 'in_progress' | 'completed') {
   // Uses fallback client if admin instantiator is not resolved
-  const activeAdminClient = supabaseAdmin || (await createClient());
+  const activeAdminClient = await getAdminClient();
   
   const { error } = await activeAdminClient
     .from('leads')
@@ -163,7 +163,7 @@ export async function createService(formData: FormData) {
   const status = formData.get('status') as string;
   const orderIndex = parseInt(formData.get('orderIndex') as string || '0', 10);
 
-  const activeAdminClient = supabaseAdmin || (await createClient());
+  const activeAdminClient = await getAdminClient();
   const { error } = await activeAdminClient
     .from('services')
     .insert([
@@ -195,7 +195,7 @@ export async function createPost(formData: FormData) {
   const metaTitle = formData.get('metaTitle') as string;
   const metaDescription = formData.get('metaDescription') as string;
 
-  const activeAdminClient = supabaseAdmin || (await createClient());
+  const activeAdminClient = await getAdminClient();
   const { error } = await activeAdminClient
     .from('posts')
     .insert([
@@ -231,7 +231,7 @@ export async function createRestaurantProject(formData: FormData) {
     ? screenshotUrlsInput.split(',').map((url) => url.trim())
     : [];
 
-  const activeAdminClient = supabaseAdmin || (await createClient());
+  const activeAdminClient = await getAdminClient();
   const { error } = await activeAdminClient
     .from('restaurant_projects')
     .insert([
@@ -261,7 +261,7 @@ export async function createSkillHubResource(formData: FormData) {
   const category = formData.get('category') as string;
   const orderIndex = parseInt(formData.get('orderIndex') as string || '0', 10);
 
-  const activeAdminClient = supabaseAdmin || (await createClient());
+  const activeAdminClient = await getAdminClient();
   const { error } = await activeAdminClient
     .from('skill_hub_resources')
     .insert([
@@ -293,7 +293,7 @@ export async function createPortfolioProject(formData: FormData) {
   const orderIndex = parseInt(formData.get('orderIndex') as string || '0', 10);
   const status = formData.get('status') as string;
 
-  const activeAdminClient = supabaseAdmin || (await createClient());
+  const activeAdminClient = await getAdminClient();
   const { error } = await activeAdminClient
     .from('portfolio_projects')
     .insert([
@@ -324,7 +324,7 @@ export async function createPaper(formData: FormData) {
   const department = formData.get('department') as string;
   const fileUrl = formData.get('fileUrl') as string;
 
-  const activeAdminClient = supabaseAdmin || (await createClient());
+  const activeAdminClient = await getAdminClient();
   const { error } = await activeAdminClient
     .from('papers')
     .insert([
