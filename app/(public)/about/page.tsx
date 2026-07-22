@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Award, Target, Heart } from 'lucide-react';
 
 export default function About() {
@@ -23,33 +24,19 @@ export default function About() {
     },
   ];
 
-  const team = [
-    {
-      name: 'Sarah Mitchell',
-      role: 'Founder & Career Strategist',
-      bio: '10+ years in tech recruiting and HR. Passionate about helping people find roles where they truly belong.',
-    },
-    {
-      name: 'James Chen',
-      role: 'Resume Expert & ATS Specialist',
-      bio: 'Former recruiter turned resume optimizer. Knows exactly what hiring managers see and seek.',
-    },
-    {
-      name: 'Maria Rodriguez',
-      role: 'LinkedIn & Branding Specialist',
-      bio: 'Brand strategist with a track record of transforming professional identities online.',
-    },
-  ];
-
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-aether-electric-teal text-aether-sky-white py-16 lg:py-24">
+      {/* Hero Section — with background photo */}
+      <section className="relative text-white py-20 lg:py-28 overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <Image src="/hero-nature.jpg" alt="" fill priority className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-br from-aether-deep-teal/90 to-aether-electric-teal/80" />
+        </div>
         <div className="container-aether text-center">
           <h1 className="text-4xl lg:text-5xl font-display font-bold mb-4">
             About AETHER
           </h1>
-          <p className="text-lg text-aether-sky-white text-opacity-90 max-w-2xl mx-auto">
+          <p className="text-lg text-white text-opacity-90 max-w-2xl mx-auto">
             We believe in the power of clarity. When you know who you are and what you want,
             the right opportunities follow.
           </p>
@@ -74,22 +61,22 @@ export default function About() {
                 insight to transform professional applications.
               </p>
               <p className="text-aether-deep-ink text-opacity-70 leading-relaxed">
-                Today, we help hundreds of professionals every month gain clarity, increase
-                interview rates, and land roles that align with their aspirations. This is our
+                We're just getting started, and every order gets the same thing: direct,
+                hands-on attention rather than a template pulled off a shelf. This is our
                 mission: to elevate your professional presence and clarify your path forward.
               </p>
             </div>
 
-            {/* Stats */}
+            {/* What you can count on, instead of unverified stats */}
             <div className="grid grid-cols-2 gap-6">
               {[
-                { stat: '500+', label: 'Clients Helped' },
-                { stat: '87%', label: 'Interview Increase' },
-                { stat: '4.9★', label: 'Average Rating' },
-                { stat: '48h', label: 'Avg. First Revision' },
+                { stat: 'Direct', label: '1:1 with your specialist' },
+                { stat: '5-7d', label: 'Standard turnaround' },
+                { stat: 'ATS', label: 'Tested before delivery' },
+                { stat: '100%', label: 'Revisions until you\'re happy' },
               ].map((item, idx) => (
                 <div key={idx} className="card bg-gradient-to-br from-aether-electric-teal to-aether-bright-cyan text-white text-center">
-                  <p className="text-4xl font-display font-bold mb-2">{item.stat}</p>
+                  <p className="text-3xl font-display font-bold mb-2">{item.stat}</p>
                   <p className="text-sm font-500">{item.label}</p>
                 </div>
               ))}
@@ -120,29 +107,29 @@ export default function About() {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Founder Section — honest, single-founder framing */}
       <section className="py-24 section-spacing">
         <div className="container-aether">
           <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-4xl mb-4">Meet the Team</h2>
-            <p className="text-lg text-aether-deep-ink text-opacity-70">
-              Professionals who've walked in your shoes and understand what's at stake.
+            <h2 className="font-display font-bold text-4xl mb-4">Who's Behind AETHER</h2>
+            <p className="text-lg text-aether-deep-ink text-opacity-70 max-w-2xl mx-auto">
+              AETHER is founded and run by a mechanical engineering student who understands
+              exactly what it's like to be on the other side of a job application — because
+              I'm applying for internships and roles myself.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {team.map((member, idx) => (
-              <div key={idx} className="card text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-aether-electric-teal to-aether-bright-cyan rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <span className="text-aether-sky-white font-display font-bold text-2xl">
-                    {member.name.charAt(0)}
-                  </span>
-                </div>
-                <h3 className="font-display font-bold text-xl mb-1">{member.name}</h3>
-                <p className="text-aether-bright-cyan text-sm font-600 mb-4">{member.role}</p>
-                <p className="text-aether-deep-ink text-opacity-70 text-sm">{member.bio}</p>
-              </div>
-            ))}
+          <div className="max-w-xl mx-auto card text-center">
+            <div className="w-24 h-24 bg-gradient-to-br from-aether-electric-teal to-aether-bright-cyan rounded-full mx-auto mb-6 flex items-center justify-center">
+              <span className="text-aether-sky-white font-display font-bold text-2xl">A</span>
+            </div>
+            <h3 className="font-display font-bold text-xl mb-1">Founder & Career Strategist</h3>
+            <p className="text-aether-bright-cyan text-sm font-600 mb-4">Every order, personally reviewed</p>
+            <p className="text-aether-deep-ink text-opacity-70 text-sm">
+              No account managers, no outsourcing to a team you'll never meet. When you work
+              with AETHER, you work directly with the person building your resume, portfolio,
+              or presentation.
+            </p>
           </div>
         </div>
       </section>
@@ -165,7 +152,7 @@ export default function About() {
       <section className="py-24">
         <div className="container-aether text-center">
           <h2 className="font-display font-bold text-4xl mb-4">
-            Ready to Join Our Success Stories?
+            Ready to Get Started?
           </h2>
           <p className="text-lg text-aether-deep-ink text-opacity-70 max-w-2xl mx-auto mb-8">
             Let's clarify your path and elevate your career together.
@@ -177,4 +164,5 @@ export default function About() {
       </section>
     </>
   );
-}
+                }
+              
