@@ -27,7 +27,7 @@ export const SOCIAL_LINKS = {
   },
   whatsapp: {
     label: 'WhatsApp',
-    url: 'https://wa.me/92XXXXXXXXXX', // TODO: replace with your real WhatsApp number
+    url: 'https://wa.me/923264213612', // TODO: replace with your real WhatsApp number
   },
   email: {
     label: 'Email',
