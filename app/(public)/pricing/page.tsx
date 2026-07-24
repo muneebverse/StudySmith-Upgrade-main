@@ -35,7 +35,7 @@ function TierSection({ id, title, tiers, category }: { id: string; title: string
   return (
     <div id={id} className="scroll-mt-24">
       <h2 className="font-display font-bold text-3xl mb-8 text-aether-deep-teal text-center">{title}</h2>
-      <div className="grid md:grid-cols-3 gap-8 mb-24">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
         {tiers.map((t) => (
           <PricingTierCard key={t.name} name={t.name} pricePKR={t.price} badge={t.badge} features={t.features} serviceCategory={category} />
         ))}
@@ -50,17 +50,17 @@ export default function Pricing() {
 
   return (
     <>
-      <section className="bg-aether-deep-teal text-sky-white py-16 lg:py-20">
+      <section className="bg-aether-deep-teal text-sky-white py-12 sm:py-16 lg:py-20">
         <div className="container-aether text-center">
-          <h1 className="text-4xl lg:text-5xl font-display font-bold mb-4">Transparent Pricing</h1>
-          <p className="text-lg text-sky-white text-opacity-90 max-w-2xl mx-auto mb-6">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">Transparent Pricing</h1>
+          <p className="text-base sm:text-lg text-sky-white text-opacity-90 max-w-2xl mx-auto mb-6">
             No hidden fees. Choose your service, pick a tier, get started.
           </p>
           <CurrencyToggle />
         </div>
       </section>
 
-      <section className="py-24 section-spacing">
+      <section className="py-12 sm:py-24 section-spacing">
         <div className="container-aether">
           <TierSection id="portfolio" title="Portfolio & Website" tiers={PORTFOLIO_TIERS} category="Portfolio & Website" />
           <TierSection id="cv" title="CV & Career Documents" tiers={CV_TIERS} category="CV & Career Documents" />
@@ -81,7 +81,7 @@ export default function Pricing() {
           {/* Bundles */}
           <div className="mb-16">
             <h2 className="font-display font-bold text-3xl mb-8 text-aether-deep-teal text-center">Smart Bundles</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {BUNDLES.map((b) => (
                 <div key={b.name} className="card text-center flex flex-col">
                   <h3 className="font-display font-bold text-lg mb-2 text-aether-deep-teal">{b.name}</h3>
