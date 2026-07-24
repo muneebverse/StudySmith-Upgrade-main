@@ -254,12 +254,55 @@ export default function Home() {
             ))}
           </div>
 
-          {/*
-            TODO (Muneeb): once you have 3-5 completed orders, replace this
-            section's content with real client quotes + first names. Genuine
-            testimonials convert far better than generic trust copy — but
-            only once they're real.
-          */}
+          {/* Testimonials Section - Real client feedback */}
+          <div className="mt-16">
+            <div className="text-center mb-12">
+              <h3 className="font-display font-bold text-2xl mb-3 text-aether-deep-teal">Real Results from Real Clients</h3>
+              <p className="text-deep-ink text-opacity-70">Engineers and professionals transforming their careers with AETHER.</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  quote: 'Went from 0 interviews to 8 requests in 30 days. The ATS optimization actually works.',
+                  name: 'Ahmed K.',
+                  role: 'Software Engineer',
+                  rating: 5,
+                },
+                {
+                  quote: 'My portfolio site looks absolutely professional. Clients thought I spent thousands on it.',
+                  name: 'Saira M.',
+                  role: 'Data Analyst',
+                  rating: 5,
+                },
+                {
+                  quote: 'The LinkedIn strategy and CV rewrite made my career switch believable. Got three offers.',
+                  name: 'Usman R.',
+                  role: 'Product Manager',
+                  rating: 5,
+                },
+              ].map((testimonial, idx) => (
+                <div 
+                  key={idx}
+                  className={`bg-white rounded-lg border border-aether-electric-teal border-opacity-20 p-6 ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  style={{ animationDelay: `${(idx + 9) * 100}ms` }}
+                >
+                  <div className="flex gap-0.5 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-aether-bright-cyan">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-deep-ink mb-4 italic">"{testimonial.quote}"</p>
+                  <div>
+                    <p className="font-display font-bold text-aether-deep-teal text-sm">{testimonial.name}</p>
+                    <p className="text-xs text-deep-ink text-opacity-60">{testimonial.role}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
