@@ -20,10 +20,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  min-width: 0; /* prevents flex/grid children from forcing their container wider than the viewport */
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -31,6 +33,15 @@ body {
   background-color: var(--sky-white);
   color: var(--deep-ink);
   line-height: 1.6;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Text containment — long words (emails, URLs, long tier/service names) no
+   longer push outside their card/container on small screens */
+h1, h2, h3, h4, h5, h6, p, span, a, li, button {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* Typography */
@@ -132,7 +143,15 @@ a:hover {
   border: 1px solid rgba(0, 188, 212, 0.1);
   border-radius: 12px;
   padding: 24px;
+  width: 100%;
+  overflow: hidden;
   transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 20px;
+  }
 }
 
 .card:hover {
@@ -266,9 +285,16 @@ label {
 }
 
 .container-aether {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+}
+
+@media (max-width: 480px) {
+  .container-aether {
+    padding: 0 16px;
+  }
 }
 
 /* Visual Hierarchy */
@@ -325,5 +351,24 @@ img {
 
   .container-aether {
     padding: 0 16px;
+  }
+
+  /* Full-width buttons stack cleanly and stay tappable on small screens */
+  .btn {
+    padding: 12px 20px;
+    font-size: 13px;
+    min-height: 44px;
+  }
+}
+
+/* Touch targets everywhere, not just inside the 640px block, so tablets
+   in portrait mode (641-767px) still get comfortably tappable controls */
+@media (max-width: 767px) {
+  .btn,
+  button,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
   }
 }
