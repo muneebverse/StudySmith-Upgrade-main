@@ -12,7 +12,7 @@ export default function PricingTierCard({
   const featured = !!badge;
 
   return (
-    <div className={`card flex flex-col h-full ${featured ? 'border-2 border-aether-bright-cyan shadow-card md:scale-105' : ''}`}>
+    <div className={`card flex flex-col h-full transition-all duration-300 ${featured ? 'border-2 border-aether-bright-cyan shadow-2xl ring-2 ring-aether-bright-cyan ring-opacity-20' : ''}`}>
       {badge && (
         <span className="inline-block bg-aether-bright-cyan text-aether-deep-teal px-3 py-1 rounded-tight text-xs font-bold mb-3 w-fit">
           {badge}
