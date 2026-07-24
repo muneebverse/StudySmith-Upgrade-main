@@ -1,322 +1,321 @@
 'use client';
 
 import Link from 'next/link';
-import { Check, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Users, Zap, Clock, Star } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
-interface ServiceTier {
-  name: string;
-  price: string;
-  features: string[];
-  timeline: string;
-  cta: string;
-  highlighted?: boolean;
-}
+export default function ServicesPage() {
+  const [isLoaded, setIsLoaded] = useState(false);
 
-interface Service {
-  id: string;
-  icon: string;
-  title: string;
-  description: string;
-  tiers: ServiceTier[];
-}
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
-const SERVICES: Service[] = [
-  {
-    id: 'portfolio',
-    icon: '🎨',
-    title: 'Portfolio & Website',
-    description: 'Next.js-powered portfolio websites that showcase your work and convert visitors into opportunities.',
-    tiers: [
-      {
-        name: 'LAUNCH',
-        price: '5,999 PKR',
-        timeline: '7-14 days',
-        features: ['4-page portfolio', '3-5 projects', 'Mobile-responsive', '1 revision'],
-        cta: 'Get Started',
-      },
-      {
-        name: 'AMPLIFY',
-        price: '9,999 PKR',
-        timeline: '14-21 days',
-        features: ['Everything in LAUNCH', 'Testimonials', 'Blog setup', 'SEO basics', '2 revisions'],
-        cta: 'Upgrade',
-        highlighted: true,
-      },
-      {
-        name: 'DOMINATE',
-        price: '17,999 PKR',
-        timeline: '21-28 days',
-        features: ['Everything in AMPLIFY', '3-5 blog posts', 'Advanced SEO', 'Analytics', 'Email capture', '3 revisions'],
-        cta: 'Go Pro',
-      },
-    ],
-  },
-  {
-    id: 'cv',
-    icon: '📄',
-    title: 'CV & Career Documents',
-    description: 'ATS-optimized CVs with modern design. Your CV gets 6 seconds—we make them count.',
-    tiers: [
-      {
-        name: 'GET NOTICED',
-        price: '1,999 PKR',
-        timeline: '3-5 days',
-        features: ['1-page ATS-optimized CV', 'Keyword audit', 'Modern design', 'PDF + DOCX', '1 revision'],
-        cta: 'Order Now',
-      },
-      {
-        name: 'STAND OUT',
-        price: '4,999 PKR',
-        timeline: '4-6 days',
-        features: ['Everything in GET NOTICED', '3 tailored versions', 'Advanced keywords', 'LinkedIn headline', '2 revisions'],
-        cta: 'Upgrade',
-        highlighted: true,
-      },
-      {
-        name: 'OWN IT',
-        price: '7,999 PKR',
-        timeline: '5-7 days',
-        features: ['Everything in STAND OUT', 'Visual CV summary', 'Cover letter', '15 company leads', 'Full LinkedIn strategy', '3 revisions'],
-        cta: 'Go Premium',
-      },
-    ],
-  },
-  {
-    id: 'presentations',
-    icon: '🎬',
-    title: 'Presentations & Slide Decks',
-    description: 'Professional presentations that impress. Strategic flow, modern design, delivery confidence.',
-    tiers: [
-      {
-        name: 'IMPRESS',
-        price: '999 PKR',
-        timeline: '3-5 days',
-        features: ['5-10 slides', 'Content + design', 'Modern template design', 'PowerPoint/Google Slides', '1 revision'],
-        cta: 'Order Now',
-      },
-      {
-        name: 'CAPTIVATE',
-        price: '2,999 PKR',
-        timeline: '3-5 days',
-        features: ['10-15 slides', 'Advanced design', 'Data visualization', 'Speaker notes', '2 revisions'],
-        cta: 'Upgrade',
-        highlighted: true,
-      },
-      {
-        name: 'COMMAND',
-        price: '3,999 PKR',
-        timeline: '3-5 days',
-        features: ['15-20 slides', 'Luxury design', 'Animations', 'Full strategy', 'Delivery coaching', '3 revisions'],
-        cta: 'Go Luxury',
-      },
-    ],
-  },
-  {
-    id: 'linkedin',
-    icon: '💼',
-    title: 'LinkedIn Optimization',
-    description: 'Optimize your professional identity for discoverability, credibility, and opportunities.',
-    tiers: [
-      {
-        name: 'PROFILE BOOST',
-        price: '1,499 PKR',
-        timeline: '2-3 days',
-        features: [
-          'Headline rewrite (ATS-friendly)',
-          'Professional summary optimization',
-          'Experience restructure',
-          'Skills optimization',
-          'Photo + banner alignment',
-          'Copy-paste ready',
-        ],
-        cta: 'Get Optimized',
-        highlighted: true,
-      },
-    ],
-  },
-];
+  const services = [
+    {
+      title: 'Portfolio & Website Services',
+      description: 'Custom Next.js portfolios that convert visitors into opportunities.',
+      icon: '🌐',
+      features: ['Mobile-responsive design', 'Project showcase', 'Blog setup', 'SEO optimization'],
+      ctaText: 'View Pricing →',
+    },
+    {
+      title: 'CV & Career Document Services',
+      description: 'ATS-optimized CVs with modern design that get past screening systems.',
+      icon: '📄',
+      features: ['Keyword optimization', 'Multiple versions', 'LinkedIn strategy', 'Cover letters'],
+      ctaText: 'View Pricing →',
+    },
+    {
+      title: 'Presentation & Slide Deck Services',
+      description: 'Professional presentations with strategic narrative flow and compelling design.',
+      icon: '🎯',
+      features: ['Custom design', 'Data visualization', 'Speaker notes', 'Delivery coaching'],
+      ctaText: 'View Pricing →',
+    },
+    {
+      title: 'LinkedIn Optimization Service',
+      description: 'Optimize your professional identity for discoverability and credibility.',
+      icon: '💼',
+      features: ['Headline rewrite', 'Professional summary', 'Skills optimization', 'Photo + banner'],
+      ctaText: 'View Pricing →',
+    },
+  ];
 
-const BUNDLES = [
-  {
-    name: 'STARTUP BUNDLE',
-    savings: 'Save 999 PKR',
-    price: '6,999 PKR',
-    services: ['LAUNCH Portfolio', 'GET NOTICED CV'],
-    color: 'from-aether-electric-teal to-aether-sky-cyan',
-  },
-  {
-    name: 'PROFESSIONAL BUNDLE',
-    savings: 'Save 1,998 PKR',
-    price: '13,999 PKR',
-    services: ['AMPLIFY Portfolio', 'STAND OUT CV'],
-    color: 'from-aether-sky-cyan to-aether-bright-cyan',
-  },
-  {
-    name: 'COMPLETE PRESENCE BUNDLE',
-    savings: 'Save 7,994 PKR',
-    price: '24,999 PKR',
-    services: ['DOMINATE Portfolio', 'OWN IT CV', 'LinkedIn Optimization'],
-    color: 'from-aether-bright-cyan to-aether-electric-teal',
-  },
-  {
-    name: 'ALL-IN BUNDLE',
-    savings: 'Save 10,494 PKR',
-    price: '28,999 PKR',
-    services: ['DOMINATE Portfolio', 'OWN IT CV', 'COMMAND Presentation', 'LinkedIn Optimization'],
-    color: 'from-aether-deep-teal to-aether-bright-cyan',
-  },
-];
+  const processSteps = [
+    {
+      number: '01',
+      title: 'You Choose Your Service & Tier',
+      description: 'Browse our services and pick the tier that fits your budget and needs.',
+    },
+    {
+      number: '02',
+      title: 'Fill Out Intake Form',
+      description: 'Share your background, target roles, projects, and preferred timeline with us.',
+    },
+    {
+      number: '03',
+      title: 'Secure Your Spot',
+      description: 'Pay 50% deposit to lock in your project start date and timeline.',
+    },
+    {
+      number: '04',
+      title: 'We Build & Iterate',
+      description: 'We create your work and you review—revision rounds included per tier.',
+    },
+    {
+      number: '05',
+      title: 'Delivery & Support',
+      description: 'Final payment, download all files, and get 7-day support for tweaks.',
+    },
+  ];
 
-function ServiceCard({ service }: { service: Service }) {
+  const testimonials = [
+    {
+      name: 'Ahmed K.',
+      role: 'Software Engineer',
+      text: 'AETHER transformed my resume completely. Went from 0 interviews to 8 requests in 30 days. The ATS optimization actually works.',
+      rating: 5,
+    },
+    {
+      name: 'Saira M.',
+      role: 'Data Analyst',
+      text: 'My portfolio site looks absolutely professional. Clients thought I spent thousands on it. Worth every rupee.',
+      rating: 5,
+    },
+    {
+      name: 'Usman R.',
+      role: 'Product Manager (Career Transition)',
+      text: 'The LinkedIn strategy and CV rewrite made my career switch believable. Got offers from companies I never thought would consider me.',
+      rating: 5,
+    },
+    {
+      name: 'Fatima A.',
+      role: 'UX Designer',
+      text: 'The presentation deck for my portfolio review was stunning. Clear, strategic, and exactly what I needed.',
+      rating: 5,
+    },
+  ];
+
   return (
-    <div className="space-y-6">
-      <div className="space-y-3">
-        <div className="text-5xl">{service.icon}</div>
-        <h3 className="text-2xl font-bold text-aether-deep-teal">{service.title}</h3>
-        <p className="text-deep-ink text-opacity-70 text-sm leading-relaxed">{service.description}</p>
-      </div>
+    <>
+      {/* Hero Section */}
+      <section className="relative py-20 sm:py-28 overflow-hidden">
+        <div className="absolute inset-0 -z-20">
+          <div className="absolute inset-0 bg-gradient-to-r from-aether-deep-teal via-aether-electric-teal to-aether-bright-cyan opacity-10"></div>
+        </div>
 
-      <div className="space-y-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
-        {service.tiers.map((tier) => (
-          <div
-            key={tier.name}
-            className={`relative rounded-2xl p-6 border-2 transition-all duration-300 ${
-              tier.highlighted
-                ? 'bg-gradient-to-br from-aether-electric-teal to-aether-sky-cyan border-aether-bright-cyan shadow-lg scale-105'
-                : 'bg-white border-aether-electric-teal border-opacity-20 hover:border-opacity-100'
-            }`}
-          >
-            {tier.highlighted && (
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-aether-bright-cyan text-aether-deep-ink text-xs font-bold rounded-full whitespace-nowrap">
-                Most Popular
-              </div>
-            )}
-
-            <div className="space-y-4">
-              <div>
-                <h4 className={`text-lg font-bold ${tier.highlighted ? 'text-white' : 'text-aether-deep-teal'}`}>
-                  {tier.name}
-                </h4>
-                <div className={`text-3xl font-bold mt-2 ${tier.highlighted ? 'text-white' : 'text-aether-electric-teal'}`}>
-                  {tier.price}
-                </div>
-                <p className={`text-xs mt-2 ${tier.highlighted ? 'text-white text-opacity-80' : 'text-neutral'}`}>
-                  Timeline: {tier.timeline}
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                {tier.features.map((feature) => (
-                  <div key={feature} className="flex gap-2 items-start">
-                    <Check size={16} className={`mt-0.5 flex-shrink-0 ${tier.highlighted ? 'text-white' : 'text-aether-bright-cyan'}`} />
-                    <span className={`text-sm ${tier.highlighted ? 'text-white' : 'text-deep-ink text-opacity-80'}`}>
-                      {feature}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <Link
-                href={`/request?service=${service.title}&tier=${tier.name}`}
-                className={`block text-center py-2.5 font-bold rounded-lg transition-all duration-200 ${
-                  tier.highlighted
-                    ? 'bg-white text-aether-deep-teal hover:bg-aether-sky-white hover:scale-105'
-                    : 'bg-aether-electric-teal text-white hover:bg-aether-deep-teal hover:scale-105'
-                }`}
-              >
-                {tier.cta}
+        <div className="container-aether">
+          <div className={`text-center max-w-3xl mx-auto ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            <h1 className="font-display font-bold text-4xl sm:text-5xl mb-6 text-aether-deep-teal">
+              We Build Your Complete Professional Identity
+            </h1>
+            <p className="text-lg text-deep-ink text-opacity-70 mb-8">
+              Not templates. Not generic. Custom work built for you. Portfolios, CVs, presentations, LinkedIn—everything you need to stand out and get hired.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/pricing" className="btn btn-primary">
+                View Pricing
+                <ArrowRight size={18} className="ml-2" />
+              </Link>
+              <Link href="/request" className="btn btn-secondary">
+                Request a Quote
               </Link>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export default function Services() {
-  return (
-    <div className="bg-sky-white py-16 sm:py-24">
-      <div className="container-aether">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <div className="eyebrow">OUR SERVICES</div>
-          <h2 className="text-aether-deep-teal font-bold">Choose Your Path to Growth</h2>
-          <p className="text-deep-ink text-opacity-70 leading-relaxed">
-            Four core services, three tiers each, designed for engineers at every career stage. Pick your service, choose your tier, level up.
-          </p>
         </div>
+      </section>
 
-        {/* Services Grid */}
-        <div className="space-y-16">
-          {SERVICES.map((service) => (
-            <div key={service.id}>
-              <ServiceCard service={service} />
-            </div>
-          ))}
-        </div>
-
-        {/* Bundles Section */}
-        <div className="mt-24 space-y-8">
-          <div className="text-center space-y-4">
-            <div className="eyebrow">SAVE MORE WITH BUNDLES</div>
-            <h3 className="text-3xl font-bold text-aether-deep-teal">Complete Packages, Maximum Savings</h3>
+      {/* Services Grid */}
+      <section className="py-20 sm:py-28 bg-sky-white">
+        <div className="container-aether">
+          <div className="text-center mb-16">
+            <h2 className="font-display font-bold text-3xl sm:text-4xl mb-4 text-aether-deep-teal">
+              What We Do
+            </h2>
+            <p className="text-lg text-deep-ink text-opacity-70 max-w-2xl mx-auto">
+              Four core services. One goal: clarify your professional narrative and position you for roles that match your aspirations.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {BUNDLES.map((bundle) => (
+          <div className="grid md:grid-cols-2 gap-8">
+            {services.map((service, idx) => (
               <div
-                key={bundle.name}
-                className={`relative rounded-2xl bg-gradient-to-br ${bundle.color} p-8 text-white overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105`}
+                key={idx}
+                className={`card hover:border-aether-bright-cyan hover:shadow-lg transition-all ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}
+                style={{ animationDelay: `${idx * 100}ms` }}
               >
-                <div className="absolute inset-0 opacity-10 mix-blend-overlay">
-                  <div className="absolute top-0 right-0 w-40 h-40 rounded-full blur-3xl"></div>
-                </div>
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="font-display font-bold text-xl mb-2 text-aether-deep-teal">
+                  {service.title}
+                </h3>
+                <p className="text-deep-ink text-opacity-70 mb-6">
+                  {service.description}
+                </p>
+                <ul className="space-y-2 mb-8">
+                  {service.features.map((feature, i) => (
+                    <li key={i} className="flex gap-2 items-start text-sm">
+                      <CheckCircle2 size={18} className="text-aether-bright-cyan flex-shrink-0 mt-0.5" />
+                      <span className="text-deep-ink">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/pricing" className="text-aether-electric-teal font-600 hover:text-aether-bright-cyan transition-colors inline-flex items-center gap-2">
+                  {service.ctaText}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                <div className="relative space-y-4">
-                  <div className="flex items-start justify-between">
-                    <h4 className="text-lg font-bold flex-1">{bundle.name}</h4>
-                    <span className="bg-white bg-opacity-20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap ml-2">
-                      {bundle.savings}
-                    </span>
+      {/* How It Works Section */}
+      <section className="py-20 sm:py-28 bg-aether-electric-teal bg-opacity-5">
+        <div className="container-aether">
+          <div className="text-center mb-16">
+            <h2 className="font-display font-bold text-3xl sm:text-4xl mb-4 text-aether-deep-teal">
+              How AETHER Works
+            </h2>
+            <p className="text-lg text-deep-ink text-opacity-70 max-w-2xl mx-auto">
+              Five simple steps from idea to delivery. Direct, transparent, no surprises.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-5 gap-4 sm:gap-6">
+            {processSteps.map((step, idx) => (
+              <div key={idx} className={`relative ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}
+                style={{ animationDelay: `${idx * 100}ms` }}>
+                {/* Connector line (hidden on mobile/tablet) */}
+                {idx < processSteps.length - 1 && (
+                  <div className="hidden md:block absolute left-1/2 top-20 w-full h-0.5 bg-gradient-to-r from-aether-electric-teal to-aether-bright-cyan"></div>
+                )}
+
+                <div className="relative bg-white rounded-lg border border-aether-electric-teal border-opacity-20 p-6 text-center h-full">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-aether-deep-teal to-aether-electric-teal flex items-center justify-center text-white font-bold text-lg mx-auto mb-4 relative z-10">
+                    {step.number}
                   </div>
-
-                  <div className="text-4xl font-bold">{bundle.price}</div>
-
-                  <ul className="space-y-2 text-sm text-opacity-90">
-                    {bundle.services.map((service) => (
-                      <li key={service} className="flex gap-2 items-start">
-                        <Zap size={16} className="mt-0.5 flex-shrink-0" />
-                        <span>{service}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Link
-                    href={`/request?bundle=${bundle.name}`}
-                    className="block mt-6 py-2.5 px-4 bg-white text-aether-deep-ink font-bold rounded-lg text-center hover:bg-opacity-90 transition-all duration-200 hover:scale-105"
-                  >
-                    Get This Bundle
-                  </Link>
+                  <h3 className="font-display font-bold text-lg mb-2 text-aether-deep-teal">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-deep-ink text-opacity-70">
+                    {step.description}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Bottom CTA */}
-        <div className="mt-20 text-center space-y-6">
-          <p className="text-deep-ink text-opacity-70 max-w-xl mx-auto">
-            Still deciding? Talk to us first. No pressure, just clarity.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-aether-deep-teal hover:bg-aether-electric-teal text-white font-bold rounded-lg transition-all duration-200 hover:scale-105 shadow-lg"
-          >
-            Schedule a Consultation
-          </Link>
+      {/* Testimonials Section */}
+      <section className="py-20 sm:py-28 bg-sky-white">
+        <div className="container-aether">
+          <div className="text-center mb-16">
+            <h2 className="font-display font-bold text-3xl sm:text-4xl mb-4 text-aether-deep-teal">
+              What Clients Say
+            </h2>
+            <p className="text-lg text-deep-ink text-opacity-70 max-w-2xl mx-auto">
+              Real results from engineers and professionals who transformed their careers with AETHER.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {testimonials.map((testimonial, idx) => (
+              <div
+                key={idx}
+                className={`card bg-gradient-to-br from-sky-white to-aether-electric-teal to-opacity-5 hover:shadow-lg transition-all ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}
+                style={{ animationDelay: `${idx * 100}ms` }}
+              >
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} size={16} className="fill-aether-bright-cyan text-aether-bright-cyan" />
+                  ))}
+                </div>
+                <p className="text-deep-ink mb-6 leading-relaxed italic">
+                  "{testimonial.text}"
+                </p>
+                <div>
+                  <p className="font-display font-bold text-aether-deep-teal">{testimonial.name}</p>
+                  <p className="text-sm text-deep-ink text-opacity-60">{testimonial.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* Why AETHER Section */}
+      <section className="py-20 sm:py-28 bg-gradient-to-r from-aether-deep-teal via-aether-electric-teal to-aether-bright-cyan">
+        <div className="container-aether">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className={isLoaded ? 'animate-fade-in-up' : 'opacity-0'}>
+              <h2 className="font-display font-bold text-3xl sm:text-4xl text-sky-white mb-6">
+                Why Choose AETHER?
+              </h2>
+              <ul className="space-y-4">
+                {[
+                  'Direct collaboration — you work with me, not account managers',
+                  'Fast turnaround — 5-7 days standard, rush available',
+                  'Revisions included — 1-3 rounds per tier until it\'s right',
+                  'ATS-optimized — designed to pass screening systems',
+                  'Brand consistency — teal/cyan aesthetic across all work',
+                  'Strategic keywords — tailored to your field and target roles',
+                ].map((point, idx) => (
+                  <li key={idx} className="flex gap-3 items-start">
+                    <CheckCircle2 size={24} className="text-aether-bright-cyan flex-shrink-0 mt-0.5" />
+                    <span className="text-sky-white text-lg">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className={`flex flex-col gap-4 ${isLoaded ? 'animate-fade-in-down' : 'opacity-0'}`}>
+              <div className="bg-sky-white bg-opacity-10 backdrop-blur-md rounded-lg p-6 border border-sky-white border-opacity-20">
+                <Users size={32} className="text-aether-bright-cyan mb-3" />
+                <h3 className="font-display font-bold text-lg text-sky-white mb-2">For Everyone</h3>
+                <p className="text-sky-white text-opacity-90">Recent grads, career changers, experienced professionals — we tailor work to your story.</p>
+              </div>
+              <div className="bg-sky-white bg-opacity-10 backdrop-blur-md rounded-lg p-6 border border-sky-white border-opacity-20">
+                <Zap size={32} className="text-aether-bright-cyan mb-3" />
+                <h3 className="font-display font-bold text-lg text-sky-white mb-2">Fast & Reliable</h3>
+                <p className="text-sky-white text-opacity-90">Fixed timelines, direct communication, deliverables you can download and own forever.</p>
+              </div>
+              <div className="bg-sky-white bg-opacity-10 backdrop-blur-md rounded-lg p-6 border border-sky-white border-opacity-20">
+                <Clock size={32} className="text-aether-bright-cyan mb-3" />
+                <h3 className="font-display font-bold text-lg text-sky-white mb-2">Post-Delivery Support</h3>
+                <p className="text-sky-white text-opacity-90">7-day support window for minor tweaks after delivery. You're never left stranded.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 sm:py-28 bg-sky-white">
+        <div className="container-aether">
+          <div className="bg-gradient-to-br from-aether-deep-teal to-aether-electric-teal rounded-2xl p-12 sm:p-16 text-center overflow-hidden relative">
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-aether-bright-cyan rounded-full opacity-20 blur-3xl"></div>
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-aether-sky-cyan rounded-full opacity-20 blur-3xl"></div>
+
+            <div className="relative z-10">
+              <h2 className="font-display font-bold text-3xl sm:text-4xl text-sky-white mb-4">
+                Ready to Elevate Your Professional Presence?
+              </h2>
+              <p className="text-lg text-sky-white text-opacity-90 max-w-2xl mx-auto mb-8">
+                Let's transform your application from invisible to unmissable. Check out our pricing and pick the service that fits your needs.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/pricing" className="btn btn-primary bg-aether-bright-cyan text-aether-deep-teal hover:bg-sky-white">
+                  View Pricing
+                </Link>
+                <Link href="/request" className="btn btn-primary bg-sky-white text-aether-deep-teal hover:bg-aether-bright-cyan">
+                  Request a Quote
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
