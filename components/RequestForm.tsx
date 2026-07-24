@@ -86,7 +86,7 @@ export default function RequestForm({
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="e.g., Muneeb Sultan"
+            placeholder="e.g., James"
             className="w-full px-4 py-2.5 rounded-lg border border-aether-electric-teal border-opacity-20 bg-sky-white text-deep-ink placeholder-neutral focus:border-opacity-100 focus:border-aether-bright-cyan transition-all"
           />
         </div>
